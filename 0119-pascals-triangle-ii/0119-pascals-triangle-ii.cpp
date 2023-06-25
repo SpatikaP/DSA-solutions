@@ -8,9 +8,7 @@ public:
                 row[j]=ans[i-1][j]+ans[i-1][j-1];
             }
             ans.push_back(row);
-            if(i==rowIndex){
-                return row;
-            }
+            if(i==rowIndex) return row;
         }
         vector<int> xyz;
         return xyz;
