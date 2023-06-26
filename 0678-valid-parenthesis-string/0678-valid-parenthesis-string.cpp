@@ -1,31 +1,30 @@
 class Solution {
 public:
     bool checkValidString(string s) {
-        int n = s.length();
-        stack<int> open;
-        stack<int> star;
-
-        for(int i = 0; i < n ; i++){
-            if(s[i]=='(')open.push(i);
-            else if(s[i]=='*')star.push(i);
+        int n=s.size();
+        stack<int> open, star;
+        
+        for(int i=0; i<n; i++){
+            if(s[i]=='(') open.push(i);
+            else if(s[i]=='*') star.push(i);
             else{
-                if(open.empty() && star.empty())return false;
-                if(!open.empty())open.pop();
-                else star.pop();
+                if(!open.empty()) open.pop();
+                else if(!star.empty()) star.pop();
+                else return false;
             }
         }
-
-        if(!open.empty()){
-            if(open.size()>star.size())return false;
+        
+        //leftover open braces and stars
+        while(!open.empty()){
+            if(star.empty()) return false;
             else{
-                while(!open.empty()){
-                    if(open.top()>star.top())return false;
+                if(star.top() > open.top()){
                     star.pop();
                     open.pop();
                 }
+                else return false;
             }
         }
-
         return true;
     }
 };
