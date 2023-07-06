@@ -10,8 +10,9 @@ public:
         }
         return true;
     }
+    
     void solve(string s, vector<string> &temp, vector<vector<string>> &ans){
-        //base-case
+        // base case
         if(s.size()==0){
             ans.push_back(temp);
         }
@@ -19,7 +20,7 @@ public:
             string subs = s.substr(0,i+1);
             if(isPalindrome(subs)){
                 temp.push_back(subs);
-                solve(s.substr(i+1),temp,ans);
+                solve(s.substr(i+1,s.size()),temp,ans);
                 temp.pop_back();
             }
         }
