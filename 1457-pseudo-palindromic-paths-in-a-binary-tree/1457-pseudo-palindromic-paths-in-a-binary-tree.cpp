@@ -22,7 +22,7 @@ public:
             for(auto e:v){
                 if(e%2 != 0) z++;
             }
-            if(z<=1) cnt++;
+            if(z==1 || z==0) cnt++;
         }
     }
     int pseudoPalindromicPaths (TreeNode* root) {
