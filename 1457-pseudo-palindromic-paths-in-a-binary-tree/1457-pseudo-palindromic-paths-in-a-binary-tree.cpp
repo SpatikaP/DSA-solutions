@@ -19,8 +19,8 @@ public:
         
         if(root->left==NULL && root->right==NULL){
             int z=0;
-            for(auto e:v){
-                if(e%2 != 0) z++;
+            for(int i=1; i<=9; i++){
+                if(v[i]%2 != 0) z++;
             }
             if(z==1 || z==0) cnt++;
         }
