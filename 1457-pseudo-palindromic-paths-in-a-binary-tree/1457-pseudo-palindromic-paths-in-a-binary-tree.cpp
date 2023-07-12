@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode* root, vector<int> &v, int &cnt){
+    void dfs(TreeNode* root, vector<int> v, int &cnt){
         if(root==NULL) return;
         v[root->val]++;
         dfs(root->left,v,cnt);
@@ -24,8 +24,6 @@ public:
             }
             if(z<=1) cnt++;
         }
-        //back-tracking
-        v[root->val]--;
     }
     int pseudoPalindromicPaths (TreeNode* root) {
         vector<int> freq(10,0);
