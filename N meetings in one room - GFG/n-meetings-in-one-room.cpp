@@ -18,8 +18,7 @@ class Solution
         vector<pair<int,int>> room;
         
         for(int i=0; i<n; i++){
-            pair<int,int> p = make_pair();
-            room.push_back(p);
+            room.push_back({start[i],end[i]});
         }
         
         sort(room.begin(),room.end(),cmp);
