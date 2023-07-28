@@ -9,7 +9,7 @@ public:
     }
     bool PredictTheWinner(vector<int>& nums) {
         int sum=0;
-        sum=accumulate(begin(nums),end(nums),0);
+        for(auto e:nums) sum+=e;
         int p1 = solve(0,nums.size()-1,nums);
         int p2 = sum-p1;
         return p1>=p2;
