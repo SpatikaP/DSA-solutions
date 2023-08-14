@@ -1,21 +1,21 @@
 class Solution {
 public:
-    bool chk(vector<int> &nums, int k, int mid){
-        int total=0;
+    bool chk(int mid, vector<int> &nums ,int k){
+        int t=0;
         for(int i=0; i<nums.size(); i++){
             if(nums[i]<=mid){
-               total++;
+               t++;
                i+=1; 
             } 
         }
-        return (total>=k);
+        return (t>=k);
     }
     int minCapability(vector<int>& nums, int k) {
-        int low=1, high=1e9+1;
+       int low=1, high=1e9+1;
         int ans=1e9+1;
         while(low<=high){
             int mid=low+(high-low)/2;
-            if(chk(nums,k,mid)){
+            if(chk(mid,nums,k)){
                 ans=mid;
                 high=mid-1;
             }
