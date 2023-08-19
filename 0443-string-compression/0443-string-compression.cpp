@@ -1,27 +1,22 @@
 class Solution {
 public:
     int compress(vector<char>& chars) {
-        int c=1;
-        string ans;
+        int j=0, count=1;
+        if(chars.size()==1) return 1;
         for(int i=1; i<=chars.size(); i++){
-            if(i<chars.size() && chars[i]==chars[i-1]){
-                c++;
+            while(i<chars.size() && chars[i]==chars[i-1]){
+                count++;
+                i++;
             }
-            else{
-                if(c==1) ans.push_back(chars[i-1]);
-                else{
-                    ans.push_back(chars[i-1]);
-                    string str = to_string(c);
-                    for(auto x:str){
-                        ans.push_back(char(x));
-                    }
-                    c=1;
+            chars[j++]=chars[i-1];
+            if(count>1){
+                string c = to_string(count);
+                for(auto ch:c){
+                    chars[j++] = char(ch);
                 }
-            }   
+            }
+            count=1;
         }
-        for(int i=0; i<ans.size(); i++){
-            chars[i]=ans[i];
-        }
-        return ans.size();
+        return j;
     }
 };
