@@ -12,23 +12,25 @@
 class Solution {
 public:
     int total=0;
-    void findPath(TreeNode* root, int targetSum, long sum, unordered_map<long,int> mp){
+    void findPath(TreeNode* root, long sum, int targetSum){
+        
         if(!root) return;
-        sum+=root->val; 
-        if(mp.find(sum-targetSum)!=mp.end()){
-            total+=mp[sum-targetSum];
-        }
-        mp[sum]++;
-        findPath(root->left,targetSum,sum,mp);
-        findPath(root->right,targetSum,sum,mp);
-        mp[sum]--;
-        return;
+        
+        sum+=root->val;
+        
+        if(targetSum==sum) total++;
+        
+        findPath(root->left,sum,targetSum);
+        findPath(root->right,sum,targetSum);
+        
     }
     int pathSum(TreeNode* root, int targetSum) {
+        
         if(!root) return 0;
-        unordered_map<long,int> mp;
-        mp[0]=1;
-        findPath(root,targetSum,0,mp);
+        
+        findPath(root,0,targetSum);
+        pathSum(root->left,targetSum);
+        pathSum(root->right,targetSum);
         return total;
     }
 };
