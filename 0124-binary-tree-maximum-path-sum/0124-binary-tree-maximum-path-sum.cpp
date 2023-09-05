@@ -14,11 +14,15 @@ public:
     int max_sum=INT_MIN;
     int solve(TreeNode* root){
         if(!root) return 0;
-        int l=max(solve(root->left),0);
-        int r=max(solve(root->right),0);
-        int sum=l+r+root->val;
-        max_sum=max(max_sum,sum);
-        return root->val+max(l,r);
+        int l = solve(root->left);
+        int r = solve(root->right);
+        int neeche_nahi_jana = l+r+root->val;
+        int koi_ek_acha = max(l,r)+root->val;
+        int only_root_acha = root->val;
+        
+        max_sum = max({max_sum,neeche_nahi_jana,koi_ek_acha,only_root_acha});
+        
+        return max(koi_ek_acha,only_root_acha);
     }
     int maxPathSum(TreeNode* root) {
         solve(root);
