@@ -12,10 +12,16 @@ public:
         
         if(t[i][target]!=-1) return t[i][target];
         
-        int take_idx = solve(0,nums,target-nums[i]);
-        int reject_idx = solve(i+1,nums,target);
+        int result=0;
         
-        return t[i][target]=take_idx+reject_idx;
+        for(int i=0; i<nums.size(); i++){
+            
+            int take_idx = solve(0,nums,target-nums[i]);
+            result+=take_idx;
+        }
+        
+        
+        return t[i][target]=result;
         
     }
     
