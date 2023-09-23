@@ -1,20 +1,21 @@
 class Solution {
 public:
     int minFlips(int a, int b, int c) {
-        
-        int x, y, z, count=0;
-        
-        for(int i=0; i<32; i++){
+        int flips=0;
+        while(a!=0 || b!=0 || c!=0){
+            if((c & 1) == 1){
+                if((a & 1) == 0 && (b & 1) == 0) flips++;
+            }
+            else{
+                if((a&1)==1) flips++;
+                if((b&1)==1) flips++;
+            }
             
-            x = a & (1<<i);
-            y = b & (1<<i);
-            z = c & (1<<i);
-            
-            if(x==0 && y==0 && z!=0) count+=1;
-            else if(x!=0 && y==0 && z==0) count+=1;
-            else if(x==0 && y!=0 && z==0) count+=1;
-            else if(x!=0 && y!=0 && z==0) count+=2;
+            a>>=1;
+            b>>=1;
+            c>>=1;
         }
-        return count;
+        return flips;
     }
 };
+
